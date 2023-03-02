@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        ul{
+            margin-left: 80px;
+            list-style: none;
+        }
+        li{
+            display: none;
+            position: relative;
+        }
+        a{
+            position: absolute;
+            left: 180px;
+            top: 0;
+        }
+    </style>
+    <script src="./jquery.min.js"></script>
+</head>
+<body>
+    <div class="weibo">
+        <span>微博发布</span>
+        <textarea name="" id="" cols="30" rows="10"></textarea>
+        <button>发布</button>
+        <ul></ul>
+    </div>
+    <script>
+        $(function() {
+            $("button").click(function() {
+                var li = $("<li>" + $("textarea").val() + "<a href='javascript:;'>删除</a>" + "</li>");
+                $("ul").prepend(li);
+                $("li").slideDown();
+            })
+            // $("ul a").click(function() {
+            //     $(this).parent().remove();
+            // })
+            $("ul").on("click", "a", function() {
+                // $(this).parent().remove();
+                $(this).parent().slideUp(function() {
+                    $(this).remove();
+                });
+                $("textarea").val("");
+            })
+        })
+    </script>
+</body>
+</html>
